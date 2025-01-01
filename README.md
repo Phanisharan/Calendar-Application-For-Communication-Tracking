@@ -4,10 +4,13 @@
 
 This project is a **web application** built using **React** for the frontend and **Django REST Framework** for the backend. It is designed to manage communications with companies, track communication methods, and generate detailed reports. Both the frontend and backend are deployed on **Vercel** using serverless functions for the backend.
 
+###Floders
+- **communication-tracking** : This is a Frontened Floder
+- **communication_tracking** : This is a Backened Floder
+
 ### Technologies Used:
 - **Frontend**: React.js, Vercel (Frontend Deployment)
 - **Backend**: Django, Django REST Framework, Vercel (Backend Deployment with Serverless Functions)
-- **Database**: PostgreSQL (for production or SQLite for development)
 - **Deployment**: Vercel (Frontend and Backend)
 
 ---
