@@ -176,7 +176,7 @@ When deploying your React app to Vercel:
 
 #### a. **Add Environment Variables**  
     1. Go to your React project’s settings in the Vercel dashboard.  
-    2. Navigate to **Environment Variables**.  
+    2. Navigate to Environment Variables.  
     3. Add the following variable:  
        - Key: `REACT_APP_BACKEND_URL`  
        - Value: `https://<yoururl>.vercel.app`
@@ -190,13 +190,13 @@ Deploy the React app using the Vercel CLI or by connecting your GitHub repositor
 
 Here’s a complete summary of the required files:
 
-    | **File**                 | **Purpose**                                                                                   | **Content/Code**                                                                                                         
+    |   File                   |   Purpose                                                                                     |   Content/Code                                                                                                       
     |--------------------------|-----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------
     | `.env`                   | Environment variable for backend URL                                                          | `REACT_APP_BACKEND_URL=https://<yourapp>.vercel.app`                                                   
     | `src/config.js`          | Centralized configuration file for the API base URL                                           | `export const API_BASE_URL = process.env.REACT_APP_BACKEND_URL;`                                                        
     | `src/services/api.js`    | File to manage all API calls (if you use a service layer)                                     | Use `API_BASE_URL` for constructing API URLs.                                                                           
-    | **API call locations**   | Wherever you are making API calls in your React components                                    | Replace hardcoded URLs with `${API_BASE_URL}/your-endpoint/`.                                                           
-    | **Vercel Dashboard**     | Add environment variables for deployment                                                      | Add `REACT_APP_BACKEND_URL` in Vercel’s Environment Variables section.                                                  
+    |  API call locations      | Wherever you are making API calls in your React components                                    | Replace hardcoded URLs with `${API_BASE_URL}/your-endpoint/`.                                                           
+    |   Vercel Dashboard       | Add environment variables for deployment                                                      | Add `REACT_APP_BACKEND_URL` in Vercel’s Environment Variables section.                                                  
 
 ---
 
@@ -258,7 +258,3 @@ Once deployed:
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
-
-This **README.md** now includes:
-- Detailed setup and deployment instructions for both the **React frontend** and **Django REST backend**.
-- Notes on **functionality** and **known limitations** to help developers understand how to deploy and use the application effectively.
