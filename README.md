@@ -25,15 +25,13 @@ To deploy the backend (Django) on **Vercel** using serverless functions, follow 
 
 1. **Install necessary dependencies** for serverless deployment:
     ```bash
-    pip install vercel-django
+    pip install vercel
     ```
 
 2. **Project Structure**:
     Create the following directory structure in your Django project:
     ```plaintext
     /backend
-      ├── api/
-          └── index.py
       ├── myapp/
       ├── manage.py
       └── vercel.json
@@ -59,27 +57,33 @@ To deploy the backend (Django) on **Vercel** using serverless functions, follow 
     }
     ```
 
-4. **Create `index.py` for serverless functions**:
-    In the `api` directory, create an `index.py` file that interfaces with Django.
+4. **In you project directory of `settings.py` to allow all hosts use "*" in ALLOWED_HOSTS**:
     ```python
-    from django.core.wsgi import get_wsgi_application
-    import os
-
-    # Set Django settings
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'your_project_name.settings')
-
-    # Get WSGI application
-    app = get_wsgi_application()
+    SECRET_KEY = 'django-insecure-ra(_io_69-^3hnrktu$lvqd(no8pur4j*7+rsjlkysgd39_gh_'
+    
+    # SECURITY WARNING: don't run with debug turned on in production!
+    DEBUG = True
+    
+    ALLOWED_HOSTS = ["*"]
+    
     ```
+
+4. **In you project directory of `wsgi.py` add app = application**:
+```python
+import os
+
+from django.core.wsgi import get_wsgi_application
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'communication_tracker.settings')
+
+application = get_wsgi_application()
+app = application
+
+```
 
 ### Step 2: Deploy Django Backend
 
-1. **Install Vercel CLI**:
-    ```bash
-    npm install -g vercel
-    ```
-
-2. **Deploy to Vercel**:
+ **Deploy to Vercel**:
     - Navigate to your backend directory.
     - Run `vercel` to deploy the application:
     ```bash
