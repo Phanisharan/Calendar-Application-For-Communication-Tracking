@@ -96,49 +96,114 @@ Vercel will guide you through the deployment process and provide a URL for your 
 
 ## Frontend Setup (React) on Vercel
 
-### Step 1: Install React Dependencies
-
-1. **Navigate to the frontend directory** and install the necessary dependencies:
-    ```bash
-    cd frontend
-    npm install
-    ```
-
-### Step 2: Deploy React App to Vercel
-
-1. **Push your React code to GitHub** (if not already done):
-    ```bash
-    git init
-    git remote add origin <your-repository-url>
-    git add .
-    git commit -m "Initial commit"
-    git push -u origin master
-    ```
-
-2. **Deploy to Vercel**:
-    - Log in to Vercel at [Vercel Login](https://vercel.com/login).
-    - Import your GitHub repository into Vercel.
-    - Vercel will automatically detect that it’s a React application.
-    - Set the `Build Command` to `npm run build` (if not auto-detected).
-    - Set the `Output Directory` to `build`.
-    - Click on "Deploy."
-
-    Vercel will provide you with a live URL for your frontend after deployment.
+Here’s a step-by-step guide, for deploying your React frontend and connecting it to your Django backend:
 
 ---
 
-## Connecting the Frontend and Backend
+### 1. **Backend Deployed URL**  
+Your backend Django REST API is deployed at:  
+`https://<yoururl>.vercel.app`
 
-1. **Update the API URL in the React App**:
-    - In your React application, you need to update the API URL to point to the deployed backend.
-    - Example:
-    ```javascript
-    const API_URL = 'https://your-backend-url.vercel.app/api/';
-    ```
+---
 
-2. **Test the Integration**:
-    - Once both frontend and backend are deployed, test the application by navigating to the React app URL.
-    - Ensure that the frontend can interact with the backend API seamlessly.
+### 2. **React Frontend Configuration**  
+In your React project, make the following changes:
+
+#### a. **Environment Variables File**  
+**File:** `.env` (Root of your React project)  
+Add the following line:  
+```env
+REACT_APP_BACKEND_URL=https://<yoururl>.vercel.app
+```
+
+#### b. **Config File**  
+**File:** `src/config.js`  
+Create a file named `config.js` inside the `src` folder to centralize your API base URL.  
+```javascript
+export const API_BASE_URL = process.env.REACT_APP_BACKEND_URL;
+```
+
+#### c. **Using the API Base URL**  
+Update all API calls in your React project to use the centralized `API_BASE_URL`.
+
+**File:** Wherever your API calls are made (e.g., `src/services/api.js`, or directly in components)  
+Here’s how you can update them:
+
+**Example using `fetch`:**
+```javascript
+import { API_BASE_URL } from './config';
+
+export const fetchData = async () => {
+  const response = await fetch(`${API_BASE_URL}/api/endpoint/`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  const data = await response.json();
+  return data;
+};
+```
+
+**Example using `axios` in every component file having urls replace http://localhost:8000/api/endpoint with `${API_BASE_URL}/api/endpoint`**
+```javascript
+    import axios from 'axios';
+    import { API_BASE_URL } from './config';
+    
+    export const fetchData = () => {
+      return axios.get(`${API_BASE_URL}/api/endpoint/`)
+        .then(response => response.data)
+        .catch(error => console.error(error));
+    };
+```
+
+---
+
+### 3. **Local Development Setup**  
+For development, you’ll need to ensure that React uses the `.env` file.
+
+#### Steps:
+1. Create the `.env` file as shown above.
+2. Restart the development server:
+   ```bash
+   npm start
+   ```
+
+---
+
+### 4. **Deployment to Vercel**  
+When deploying your React app to Vercel:
+
+#### a. **Add Environment Variables**  
+    1. Go to your React project’s settings in the Vercel dashboard.  
+    2. Navigate to **Environment Variables**.  
+    3. Add the following variable:  
+       - **Key:** `REACT_APP_BACKEND_URL`  
+       - **Value:** `https://<yoururl>.vercel.app`
+
+#### b. **Deploy the React App**  
+Deploy the React app using the Vercel CLI or by connecting your GitHub repository.
+
+---
+
+### 5. **File Summary**  
+
+Here’s a complete summary of the required files:
+
+    | **File**                 | **Purpose**                                                                                   | **Content/Code**                                                                                                         
+    |--------------------------|-----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------
+    | `.env`                   | Environment variable for backend URL                                                          | `REACT_APP_BACKEND_URL=https://<yourapp>.vercel.app`                                                   
+    | `src/config.js`          | Centralized configuration file for the API base URL                                           | `export const API_BASE_URL = process.env.REACT_APP_BACKEND_URL;`                                                        
+    | `src/services/api.js`    | File to manage all API calls (if you use a service layer)                                     | Use `API_BASE_URL` for constructing API URLs.                                                                           
+    | **API call locations**   | Wherever you are making API calls in your React components                                    | Replace hardcoded URLs with `${API_BASE_URL}/your-endpoint/`.                                                           
+    | **Vercel Dashboard**     | Add environment variables for deployment                                                      | Add `REACT_APP_BACKEND_URL` in Vercel’s Environment Variables section.                                                  
+
+---
+
+### 6. **Verify Integration**  
+Once deployed:  
+1. Open your React app in a browser.  
+2. Use the browser’s developer tools (Network tab) to check API calls are sent to `https://communication-tracker-uprf.vercel.app`.  
 
 ---
 
