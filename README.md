@@ -90,7 +90,7 @@ app = application
     ```bash
     vercel
     ```
-    Vercel will guide you through the deployment process and provide a URL for your backend once the deployment is complete.
+Vercel will guide you through the deployment process and provide a URL for your backend once the deployment is complete.
 
 ---
 
