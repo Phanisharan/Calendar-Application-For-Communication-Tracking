@@ -17,6 +17,14 @@ This project is a **web application** built using **React** for the frontend and
 
 ## **Setup Instructions**
 
+### Backened Setup
+
+First of all install the required dependenices
+
+```bash
+    pip install -r requirements.txt
+```
+
 ### Backend Setup (Django + Django REST Framework) on Vercel
 
 To deploy the backend (Django) on **Vercel** using serverless functions, follow the steps below:
@@ -93,6 +101,13 @@ app = application
 Vercel will guide you through the deployment process and provide a URL for your backend once the deployment is complete.
 
 ---
+### Forntend Setup
+
+First of all install the required dependenices
+
+```
+    npm install
+```
 
 ## Frontend Setup (React) on Vercel
 
