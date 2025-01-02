@@ -86,10 +86,10 @@ app = application
  **Deploy to Vercel**:
     - Navigate to your backend directory.
     - Run `vercel` to deploy the application:
+    
     ```bash
     vercel
     ```
-
     Vercel will guide you through the deployment process and provide a URL for your backend once the deployment is complete.
 
 ---
