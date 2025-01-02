@@ -178,8 +178,8 @@ When deploying your React app to Vercel:
     1. Go to your React project’s settings in the Vercel dashboard.  
     2. Navigate to **Environment Variables**.  
     3. Add the following variable:  
-       - **Key:** `REACT_APP_BACKEND_URL`  
-       - **Value:** `https://<yoururl>.vercel.app`
+       - Key: `REACT_APP_BACKEND_URL`  
+       - Value: `https://<yoururl>.vercel.app`
 
 #### b. **Deploy the React App**  
 Deploy the React app using the Vercel CLI or by connecting your GitHub repository.
