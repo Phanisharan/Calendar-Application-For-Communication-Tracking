@@ -3,8 +3,8 @@ import { DataGrid } from '@mui/x-data-grid';
 import axios from 'axios';
 import { Tooltip } from '@mui/material';
 import { format } from 'date-fns';
-import './Dashboard.css'; 
-
+import '../styles/Dashboard.css'; 
+import { API_BASE_URL } from '../config';
 
 const formatDate = (date) => (date ? format(new Date(date), 'dd MMM yyyy') : 'No data available');
 
@@ -14,22 +14,19 @@ const Dashboard = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:8000/admin-module/companies/')
+      .get(`${API_BASE_URL}/admin-module/companies/`)
       .then((response) => {
-        console.log(response.data); 
         setCompanies(response.data); 
       })
       .catch((error) => console.error(error)); 
   }, []);
 
- 
   const handleOverrideToggle = (id) => {
     setOverrides((prevOverrides) => ({
       ...prevOverrides,
       [id]: !prevOverrides[id], 
     }));
   };
-
 
   const columns = [
     { field: 'name', headerName: 'Company Name', width: 200 },
@@ -42,9 +39,7 @@ const Dashboard = () => {
         const displayText = communications.length > 0 ? communications.map((comm) => `${comm.type} (${formatDate(comm.date)})`).join(', ') : 'No data available';
         return (
           <Tooltip title={communications.map((comm) => comm?.notes || '').join(', ')}>
-            <span>
-              {displayText}
-            </span>
+            <span>{displayText}</span>
           </Tooltip>
         );
       },
@@ -57,7 +52,6 @@ const Dashboard = () => {
         const { id, value } = params.row || {}; 
         const isOverride = overrides[id]; 
         const date = value?.date ? new Date(value.date) : null; 
-
 
         const getHighlightClass = () => {
           if (isOverride) return ''; 
@@ -98,7 +92,7 @@ const Dashboard = () => {
   }));
 
   return (
-    <div>
+    <div className="dashboard-container">
       <h2>Dashboard</h2>
       <DataGrid
         rows={rows}
