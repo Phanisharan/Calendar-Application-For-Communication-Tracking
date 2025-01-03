@@ -4,6 +4,10 @@
 
 This project is a **web application** built using **React** for the frontend and **Django REST Framework** for the backend. It is designed to manage communications with companies, track communication methods, and generate detailed reports. Both the frontend and backend are deployed on **Vercel** using serverless functions for the backend.
 
+## Live App
+
+Check out the live version of the app [here](https://communication-tracker-pjfr.vercel.app/).
+
 ### Floders
 - **communication-tracking** : This is a Frontened Floder
 - **communication_tracking** : This is a Backened Floder
@@ -267,10 +271,6 @@ Once deployed:
 - Ensure that your **API endpoints** are correctly linked to the frontend for seamless communication between the user interface and backend data.
 
 ---
-
-# Live App
-
-Check out the live version of the app [here](https://communication-tracker-pjfr.vercel.app/).
 
 
 ## **License**
