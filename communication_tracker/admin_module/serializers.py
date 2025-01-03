@@ -45,11 +45,10 @@ class CommunicationMethodSerializer(serializers.ModelSerializer):
 
 
 class CommunicationSerializer(serializers.ModelSerializer):
-    type = serializers.CharField(source='name')  
     company = serializers.PrimaryKeyRelatedField(queryset=Company.objects.all())
     method = CommunicationMethodSerializer()
     status = serializers.CharField()
 
     class Meta:
         model = Communication
-        fields = ['id', 'company', 'method', 'date', 'notes', 'status', 'due_date', 'type']
+        fields = ['id', 'company', 'method', 'date', 'notes', 'status', 'due_date']
