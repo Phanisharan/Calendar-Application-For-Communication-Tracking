@@ -89,7 +89,7 @@ const Notifications = () => {
       <List>
         {dueTodayCommunications.map((comm) => (
           <ListItem key={comm.id} style={{ borderBottom: '1px solid #ccc' }}>
-            <ListItemText primary={`${comm.company?.name || 'Unknown'} - ${comm.date}`} />
+            <ListItemText primary={`${comm.notes || 'Unknown'} - ${comm.date}`} />
             <Button
               variant="contained"
               color="primary"
