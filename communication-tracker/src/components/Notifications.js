@@ -72,7 +72,7 @@ const Notifications = () => {
       <List>
         {overdueCommunications.map((comm) => (
           <ListItem key={comm.id} style={{ borderBottom: '1px solid #ccc' }}>
-            <ListItemText primary={`${comm.company.name} - ${new Date(comm.date).toLocaleDateString()}`} />
+            <ListItemText primary={`${comm.notes} - ${new Date(comm.date).toLocaleDateString()}`} />
             <Button
               variant="contained"
               color="primary"
