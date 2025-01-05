@@ -23,11 +23,25 @@ Check out the live version of the app [here](https://communication-tracker-ru8i.
 
 ### Backened Setup
 
-First of all install the required dependenices
+1. First of all install the required dependenices
 
 ```bash
     pip install -r requirements.txt
 ```
+
+2. Setup the database by running the below commands
+
+```bash
+    python manage.py makemigrations
+    python manage.py migrate
+```
+
+3. Run the server
+
+```bash
+    python manage.py runserver
+```
+
 
 ### Backend Setup (Django + Django REST Framework) on Vercel
 
@@ -107,10 +121,16 @@ Vercel will guide you through the deployment process and provide a URL for your 
 ---
 ### Forntend Setup
 
-First of all install the required dependenices
+1. First of all install the required dependenices
 
 ```
     npm install
+```
+
+2. run server
+
+```
+    npm start
 ```
 
 ## Frontend Setup (React) on Vercel
